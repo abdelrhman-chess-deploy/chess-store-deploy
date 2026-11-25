@@ -3,6 +3,7 @@ RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 WORKDIR /src
 RUN git clone --depth 1 https://github.com/Abdelrhmannali/chess-e-commerce-store.git repo
 COPY translations.js /src/repo/chess-e-commerce-store/src/utils/translations.js
+COPY HomePage.jsx /src/repo/chess-e-commerce-store/src/components/HomePage.jsx
 WORKDIR /src/repo/chess-e-commerce-store
 RUN perl -0pi -e 's/\s*\{authMode === "login" && \(\s*<div className="beidaq-auth-demo">.*?<\/div>\s*\)\}//s' src/components/AccountPage.jsx \
  && ! grep -q beidaq-auth-demo-text src/components/AccountPage.jsx

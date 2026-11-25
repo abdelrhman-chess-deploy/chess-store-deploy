@@ -99,13 +99,17 @@ class CatalogSeeder extends Seeder
             ],
         ];
 
+        $categoryMeta = [
+            'boards' => ['name' => 'رقاع الشطرنج', 'description' => 'رقاع فاخرة من الرخام والخشب الصلب'],
+            'pieces' => ['name' => 'قطع الشطرنج', 'description' => 'قطع موزونة بإتقان بلمسات معدنية وخشبية'],
+            'clocks' => ['name' => 'ساعات الشطرنج', 'description' => 'ساعات ومؤقتات كلاسيكية ورقمية للمباريات'],
+            'accessories' => ['name' => 'الإكسسوارات', 'description' => 'حقائب وصناديق وإكسسوارات راقية'],
+        ];
+
         foreach ($catalog as $slug => $products) {
             $category = Category::firstOrCreate(
                 ['slug' => $slug],
-                [
-                    'name' => ucfirst($slug),
-                    'description' => 'Premium chess ' . $slug,
-                ]
+                $categoryMeta[$slug] ?? ['name' => ucfirst($slug), 'description' => null]
             );
 
             foreach ($products as $item) {
