@@ -15,7 +15,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 RUN git clone --depth 1 https://github.com/Abdelrhmannali/chess-e-commerce-store.git /tmp/repo \
  && cp -r /tmp/repo/Chess /app && rm -rf /tmp/repo
 WORKDIR /app
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --optimize-autoloader --no-interaction
 COPY --from=fe /src/repo/chess-e-commerce-store/dist/ /app/public/
 RUN mv /app/public/index.html /app/public/spa.html
 COPY router.php /app/router.php
